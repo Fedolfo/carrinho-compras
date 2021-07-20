@@ -1,6 +1,9 @@
 // Button GLOBAL
 const carShop = document.querySelector('.cart__items');
 const priceOfPay = document.querySelector('.total-price');
+const buttonEmptyCar = document.querySelector('.empty-cart');
+const loadingId = document.querySelector('.loading');
+const itemsSection = document.querySelector('.items');
 // Requisito 4 setItem
 const saveLs = () => {
   localStorage.setItem('Produto', carShop.innerHTML);
@@ -13,7 +16,7 @@ const catchCarShop = () => {
 };
 
 // requisito 5
-const totalPrice = async () => {
+const totalPrice = () => {
   let price = 0;
   const allCarShop = document.querySelectorAll('.cart__item');
   allCarShop.forEach((item) => {
@@ -73,8 +76,6 @@ const addcart = (event) => {
    });
 };
 
-const buttonEmptyCar = document.querySelector('.empty-cart');
-
 const emptyCar = () => {
   carShop.innerHTML = '';
   totalPrice();
@@ -98,9 +99,6 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   return section;
 }
 
-const loadingId = document.querySelector('.loading');
-const itemsSection = document.querySelector('.items');
-
 const fetchProdutos = (query) => {
   // Conecta na API e busca o item query
   // Posiciona o elemento dentro do .items (que é o noome do grupo onde vai estar todos itens)
@@ -122,6 +120,33 @@ const getProdutos = async () => {
     alert('Ocorreu um erro ao buscar o produto');
   }
 };
+// funções de pesquisas de produtos
+const searchInput = document.querySelector('#input-search');
+const searchButton = document.querySelector('.button-search');
+const search = (event) => {
+  if (event.keyCode === 13) {
+    const items = document.querySelectorAll('.item');
+    const itemContainer = document.querySelector('.items');
+    items.forEach((item) => itemContainer.removeChild(item));
+    fetchProdutos(searchInput.value);
+    searchInput.value = '';
+  }
+  return 0;
+};
+
+const searchClick = (event) => {
+  if (event.target) {
+    const items = document.querySelectorAll('.item');
+    const itemContainer = document.querySelector('.items');
+    items.forEach((item) => itemContainer.removeChild(item));
+    fetchProdutos(searchInput.value);
+    searchInput.value = '';
+  }
+  return 0;
+};
+
+searchInput.addEventListener('keyup', search);
+searchButton.addEventListener('click', searchClick);
 
 window.onload = () => {
   catchCarShop();
