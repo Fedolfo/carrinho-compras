@@ -117,10 +117,10 @@ const fetchProdutos = (query) => {
     });
 };
 
-const getProdutos = async (event) => {
+const getProdutos = async () => {
   // requisito 01
   try {
-    await fetchProdutos('bebe'); // Conjunto de itens a procurar
+    fetchProdutos('bebe'); // Conjunto de itens a procurar
   } catch (error) {
     alert('Ocorreu um erro ao buscar o produto');
   }
