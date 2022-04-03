@@ -23,3 +23,5 @@
 
 4. Para acessar online:
     [carrinho-de-compras](https://carrinho-compras-gamma.vercel.app/)
+
+---
