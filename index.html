@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <header class="header-pag">
-      <h1><strong><img src="shopping-bag.png" alt="" width="40px"></strong></h1>
-      <h1>Lojão Popular</h1>
-      <nav class="nav-search">
-        <label for="input-search"><input id = "input-search" type="search" placeholder="Pesquisar..."></label>
-        <button class="button-search"> Search </button>
-      </nav>
-    </header>
-    <section class="container">
-      <section class="items">
-      <p class="produtos"><strong>Produtos</strong></p> 
-        <p class="loading">loading...</p>
-      </section>
-      <section class="cart">
-        <span class="cart__title">Carrinho de compras</span>
-        <button class="empty-cart">Esvaziar carrinho</button>
-        <ol class="cart__items"></ol>
-        <p class="mensagem_total"><strong>Preço total: R$ <span class="total-price"></span></strong></p>
-      </section>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header-pag">
+    <h1><strong><img src="shopping-bag.png" alt="" width="40px"></strong></h1>
+    <h1>Lojão Popular</h1>
+    <nav class="nav-search">
+      <label for="input-search"><input id="input-search" type="search" placeholder="Pesquisar..."></label>
+      <button class="button-search"> Search </button>
+    </nav>
+  </header>
+  <section class="container">
+    <section class="items">
+      <p class="produtos"><strong>Produtos</strong></p>
+      <p class="loading">loading...</p>
     </section>
-    <script src="script.js"></script>
-  </body>
+    <section class="cart">
+      <span class="cart__title">Carrinho de compras</span>
+      <button class="empty-cart">Esvaziar carrinho</button>
+      <ol class="cart__items"></ol>
+      <p class="mensagem_total"><strong>Preço total: R$ <span class="total-price"></span></strong></p>
+    </section>
+  </section>
+  <script src="script.js"></script>
+</body>
+
 </html>

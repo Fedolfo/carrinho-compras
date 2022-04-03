@@ -1,9 +1,6 @@
 // Button GLOBAL
 const carShop = document.querySelector('.cart__items');
 const priceOfPay = document.querySelector('.total-price');
-const buttonEmptyCar = document.querySelector('.empty-cart');
-const loadingId = document.querySelector('.loading');
-const itemsSection = document.querySelector('.items');
 // Requisito 4 setItem
 const saveLs = () => {
   localStorage.setItem('Produto', carShop.innerHTML);
@@ -14,9 +11,8 @@ const catchCarShop = () => {
   carShop.innerHTML = localStorage.getItem('Produto');
   priceOfPay.innerHTML = localStorage.getItem('Price');
 };
-
 // requisito 5
-const totalPrice = () => {
+const totalPrice = async () => {
   let price = 0;
   const allCarShop = document.querySelectorAll('.cart__item');
   allCarShop.forEach((item) => {
@@ -53,7 +49,11 @@ carShop.addEventListener('click', cartItemClickListener); // requisito 3, evento
 function createCartItemElement({ id: sku, title: name, price: salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  li.innerText = `❌ - Serie: ${sku},
+
+  ${name}.
+
+  Preço: R$ ${salePrice}`;
 
   const getOl = document.querySelector('.cart__items');
   getOl.appendChild(li);
@@ -73,8 +73,10 @@ const addcart = (event) => {
     .then((data) => createCartItemElement(data))
     .catch((error) => {
       alert(error.message);
-   });
+    });
 };
+
+const buttonEmptyCar = document.querySelector('.empty-cart');
 
 const emptyCar = () => {
   carShop.innerHTML = '';
@@ -87,7 +89,7 @@ buttonEmptyCar.addEventListener('click', emptyCar);
 function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   const section = document.createElement('section');
   section.className = 'item';
-  
+
   const button = createCustomElement('button', 'item__add', 'Adicionar ao carrinho!');
   button.addEventListener('click', addcart); // alocado evento dentro do create product
 
@@ -95,9 +97,12 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(button);
-  
+
   return section;
 }
+
+const loadingId = document.querySelector('.loading');
+const itemsSection = document.querySelector('.items');
 
 const fetchProdutos = (query) => {
   // Conecta na API e busca o item query
@@ -112,10 +117,10 @@ const fetchProdutos = (query) => {
     });
 };
 
-const getProdutos = async () => {
+const getProdutos = async (event) => {
   // requisito 01
   try {
-    await fetchProdutos('computador'); // Conjunto de itens a procurar
+    await fetchProdutos('bebe'); // Conjunto de itens a procurar
   } catch (error) {
     alert('Ocorreu um erro ao buscar o produto');
   }
